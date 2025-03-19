@@ -13,6 +13,38 @@
         left: 50%;
         transform: translateX(-50%);
     }
+	@media (max-width: 767px) {
+			.carousel-inner .carousel-item > div {
+					display: none;
+			}
+			.carousel-inner .carousel-item > div:first-child {
+					display: block;
+			}
+	}
+	.carousel-inner .carousel-item.active,
+	.carousel-inner .carousel-item-next,
+	.carousel-inner .carousel-item-prev {
+			display: flex;
+	}
+
+	/* medium and up screens */
+	@media (min-width: 768px) {
+
+			.carousel-inner .carousel-item-end.active,
+			.carousel-inner .carousel-item-next {
+					transform: translateX(25%);
+			}
+
+			.carousel-inner .carousel-item-start.active, 
+			.carousel-inner .carousel-item-prev {
+					transform: translateX(-25%);
+			}
+	}
+
+	.carousel-inner .carousel-item-end,
+	.carousel-inner .carousel-item-start { 
+			transform: translateX(0);
+	}
     </style>
     <!--<link href="index.css" rel="stylesheet">-->
   </head>
@@ -29,54 +61,55 @@
     </div>
 
     <main class="container text-light">
-        <div class="container mt-5">
-            <div id="filmCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+        <div class="row">
+		    <div class="row m-auto justify-content-center">
+            <div id="filmCarousel" class="carousel slide" data-interval="false" >
+                <div class="carousel-inner" role="listbox">
                     <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-4">
+                        <div class="col-md-2">
+                            <div class="card">
                                 <img src="img/film.webp" class="d-block w-100">
                                 <h5>RoboCop</h5>
                             </div>
-                            <div class="col-4">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="col-md-2">
+                            <div class="card">
                                 <img src="img/film2.webp" class="d-block w-100">
                                 <h5>007</h5>
                             </div>
-                            <div class="col-4">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<div class="col-md-2">
+                            <div class="card">
                                 <img src="img/film3.webp" class="d-block w-100">
                                 <h5>Kung Fu</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-4">
+                    <div class="carousel-item">
+                        <div class="col-md-2">
+                            <div class="card">
                                 <img src="img/film2.webp" class="d-block w-100">
                                 <h5>007</h5>
-                            </div>
-                            <div class="col-4">
-                                <img src="img/film.webp" class="d-block w-100">
-                                <h5>RoboCop</h5>
-                            </div>
-                            <div class="col-4">
-                                <img src="img/film3.webp" class="d-block w-100">
-                                <h5>Kung Fu</h5>
                             </div>
                         </div>
                     </div>
-                    <div class="carousel-item active">
-                        <div class="row">
-                            <div class="col-4">
-                                <img src="img/film2.webp" class="d-block w-100">
-                                <h5>007</h5>
-                            </div>
-                            <div class="col-4">
-                                <img src="img/film3.webp" class="d-block w-100">
-                                <h5>Kung Fu</h5>
-                            </div>
-                            <div class="col-4">
+                    <div class="carousel-item">
+                        <div class="col-md-2">
+                            <div class="card">
                                 <img src="img/film.webp" class="d-block w-100">
                                 <h5>RoboCop</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-2">
+                            <div class="card">
+                                <img src="img/film3.webp" class="d-block w-100">
+                                <h5>Kung Fu</h5>
                             </div>
                         </div>
                     </div>
@@ -93,5 +126,21 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+	<script>
+		let items =document.querySelectorAll('.carousel .carousel-item')
+
+		items.forEach((el) => {
+		    const minPerSlide = 6
+		    let next = el.nextElementSibling
+		    for (var i = 1; i<minPerSlide;i++) {
+				if(!next) {
+				    next = items[0]
+				}
+				let clone = next.cloneNode(true)
+				el.appendChild(clone.children[0])
+				next = next.nextElementSibling
+			}
+		})
+	</script>
   </body>
 </html>
