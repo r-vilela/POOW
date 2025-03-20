@@ -45,6 +45,23 @@
 	.carousel-inner .carousel-item-start { 
 			transform: translateX(0);
 	}
+    .hover-item {
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .hover-item:hover {
+      transform: scale(1.2);
+    }
+    .image-container::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 15rem;
+        margin-top: 15rem;
+        background: linear-gradient(to bottom, transparent, rgba(33, 37, 41, 0.7));
+    }
     </style>
     <!--<link href="index.css" rel="stylesheet">-->
   </head>
@@ -55,61 +72,54 @@
             <i class="bi bi-person text-light fs-4 "></i>
         </div>
     </header>
-    <div >
+    <div class="image-container">
         <img src="img/catalog.webp" class=" w-100" style=" object-fit: cover; background-position: center; height: 30rem;">
-        <div class="fs-5 custom-vert position-absolute m-auto">test</div>
+        <div class="position-absolute custom-fixed bg-dark d-flex p-2" style="color: white; top: 15rem">
+            <select class="form-select">
+                <option selected>
+                    Default
+                </option>
+                <option value="2">
+                    One
+                </option>
+                <option value="1">
+                    Two
+                </option>
+            </select>
+            <div>
+                PESQUISA
+            </div>
+        </div>
     </div>
-
-    <main class="container text-light">
+    <div>
+        
+    </div>
+    <main class="container text-light overflow-hidden">
+        <div>
+            <h4 class="mt-2">Filmes</h4>
+        </div>
         <div class="row">
-		    <div class="row m-auto justify-content-center">
+		    <div class="row gap-1 m-auto justify-content-center">
             <div id="filmCarousel" class="carousel slide" data-interval="false" >
-                <div class="carousel-inner" role="listbox">
+                <div class="carousel-inner overflow-visible" role="listbox">
                     <div class="carousel-item active">
-                        <div class="col-md-2">
-                            <div class="card">
+                        <div class="col-md-2 p-1 hover-item">
+                            <div class="w-100 h-100">
                                 <img src="img/film.webp" class="d-block w-100">
-                                <h5>RoboCop</h5>
                             </div>
 						</div>
 					</div>
 					<div class="carousel-item">
-						<div class="col-md-2">
-                            <div class="card">
+						<div class="col-md-2 p-1 hover-item">
+                            <div class="w-100 h-100">
                                 <img src="img/film2.webp" class="d-block w-100">
-                                <h5>007</h5>
                             </div>
 						</div>
 					</div>
 					<div class="carousel-item">
-						<div class="col-md-2">
-                            <div class="card">
+						<div class="col-md-2 p-1 hover-item">
+                            <div class="w-100 h-100 d-flex align-items-center justify-content-center">
                                 <img src="img/film3.webp" class="d-block w-100">
-                                <h5>Kung Fu</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="img/film2.webp" class="d-block w-100">
-                                <h5>007</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="img/film.webp" class="d-block w-100">
-                                <h5>RoboCop</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-2">
-                            <div class="card">
-                                <img src="img/film3.webp" class="d-block w-100">
-                                <h5>Kung Fu</h5>
                             </div>
                         </div>
                     </div>
