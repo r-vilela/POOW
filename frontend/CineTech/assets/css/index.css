@@ -57,3 +57,9 @@
 input[type="text"]:focus {
     outline: none;  
 }
+.ativo{
+		color: gray;
+}
+.inativo {
+		color: white;
+}
