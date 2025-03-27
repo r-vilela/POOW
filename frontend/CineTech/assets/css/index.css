@@ -58,8 +58,10 @@ input[type="text"]:focus {
     outline: none;  
 }
 .ativo{
-		color: gray;
+		color: white;
+		padding: 0.5rem 1rem;
 }
 .inativo {
-		color: white;
+		color: gray;
+		padding: 0.5rem 1rem;
 }
