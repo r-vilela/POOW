@@ -7,8 +7,7 @@ $router->get('/', 'HomeController@index');
 $router->get('/sobre/{nome}', 'HomeController@sobreP');
 $router->get('/sobre', 'HomeController@sobre');
 
-// rotas para livros
-
-$router->get('/livros', 'LivroController@index');
-$router->get('/livros/adicionar', 'LivroController@create');
-$router->post('/livros/salvar', 'LivroController@store');
+$router->get('/filmes', 'FilmeController@index');
+$router->post('/filmes', 'FilmeController@cadastrar');
+$router->put('/filmes/{id}','FilmeController@atualizar');
+$router->delete('/filmes/{id}', 'FilmeController@deletar');

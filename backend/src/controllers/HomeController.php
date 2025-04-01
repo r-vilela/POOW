@@ -2,18 +2,13 @@
 namespace src\controllers;
 
 use \core\Controller;
-
-use \src\models\Livro;
+use \src\models\Filme;
 
 class HomeController extends Controller {
 
     public function index() {
-        #$this->render('home', ['nome' => 'Bonieky']);
-		$livro = new Livro();
-
-		$livros = $livro->getLivros();
-
-		return json_encode($livros, JSON_PRETTY_PRINT);		
+        $this->render('home', ['nome' => 'Bonieky']);
+        
     }
 
     public function sobre() {
