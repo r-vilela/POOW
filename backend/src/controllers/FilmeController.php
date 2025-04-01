@@ -35,6 +35,8 @@ class FilmeController extends Controller{
         $filme = new Filme();
         $filme->salvar($data_filme);
 
+        echo json_encode(['success' => true, 'message' => 'Filme cadastrado com sucesso!']);
+
     }
     
     public function atualizar($id){
@@ -51,11 +53,16 @@ class FilmeController extends Controller{
 
         $filme = new Filme();
         $filme->atualizar($id, $data_filme);
+
+        echo json_encode(['success' => true, 'message' => 'Filme atualizado com sucesso!']);
+
     }
 
     public function deletar($id){
         $filme = new Filme();
         $filme->deletar($id);
+
+        echo json_encode(['success' => true, 'message' => 'Filme deletado com sucesso!']);
     }
 
 }
