@@ -26,7 +26,7 @@ function addModal(name){
 
 						<div class="form-group">
 						<label for="filmDescription">Description</label>
-						<input type="text" class="form-control" id="filmsDescription" placeholder="Enter the film description">
+						<input type="text" class="form-control" id="filmDescription" placeholder="Enter the film description">
 						</div>
 						
 						<div class="form-group">
@@ -82,7 +82,7 @@ function addModal(name){
 						</div>
 
 						<div class="modal-body bg-dark">
-						<form id="filmForm">
+						<form id="catForm">
 
 						<div class="form-group">
 						<label for="catName">Name</label>
