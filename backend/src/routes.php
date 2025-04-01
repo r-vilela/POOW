@@ -16,3 +16,8 @@ $router->get('/generos', 'GeneroController@index');
 $router->post('/generos', 'GeneroController@cadastrar');
 $router->put('/generos/{id}', 'GeneroController@atualizar');
 $router->delete('/generos/{id}','GeneroController@deletar');
+
+$router->post('/associar', 'FilmeGeneroController@associar');
+$router->delete('/desassociar/{filme_id}/{genero_id}', 'FilmeGeneroController@desassociar');
+$router->get('/generos-filme/{id}', 'FilmeGeneroController@listarGenerosPorFilme');
+$router->get('/filmes-genero/{id}', 'FilmeGeneroController@listarFilmesPorGenero');
