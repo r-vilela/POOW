@@ -2,13 +2,8 @@
 function createTable(prtElm, name, values) {
 		prtElm.innerHTML = ''
 		title = document.createElement('div')
-		title.innerHTML = `
-				<h4>${name}</h4>
-				<div class="btn btn-success" data-toggle="modal" data-target="#films" role="button">Add</div>
-				`
-		title.classList.add('d-flex');
-		title.classList.add('align-items-center');
-		title.classList.add('justify-content-between');
+		addModal(name)
+		title.innerHTML = ``
 
 		div = document.createElement('div')
 		table = document.createElement('table')
@@ -70,20 +65,3 @@ function pagination(elm, otherElm) {
 
 		}
 }
-
-document.addEventListener("DOMContentLoaded", (event) => {
-		tableElm = document.getElementById('table-container');
-
-		createTable(tableElm, 'Films', films)
-
-		var filmsElm = document.getElementById("films")
-		var categoryElm = document.getElementById("categories")
-
-		categoryElm.addEventListener("click", (event) => {
-				pagination(event.target, filmsElm)
-		})
-		filmsElm.addEventListener("click", (event) => {
-				pagination(event.target, categoryElm)
-		})
-
-})
