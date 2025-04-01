@@ -20,12 +20,35 @@
             </div>
         </header>
         <nav class="nav container pt-5">
-				<span id="films" class="ativo">Films</span>
-				<span id="categories" class="inativo">Categories</span>
+				<span id="films" role="button" class="ativo">Films</span>
+				<span id="categories" role="button" class="inativo">Categories</span>
         </nav>
         <main id="table-container" class="container">
         </main>
+		<script src="assets/js/modal.js">
+		</script>
 		<script src="assets/js/pagination.js">
 		</script>
+		<script src="assets/js/data.js">
+		</script>
+		<div class="modal fade" id="films" tabindex="-1" role="dialog">
+				<div class="modal-dialog" role="document">
+						<div class="modal-content">
+								<div class="modal-header">
+										<h5 class="modal-title" id="filmeLabel">Add Films</h5>
+										<button type="button" class="close" data-dismiss="modal">
+												<span>&times;</span>
+										</button>
+								</div>
+								<div class="modal-body">
+										<h1>TEST</h1>
+								</div>
+								<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Send data</button>
+								</div>
+						</div>
+				</div>
+		</div>
     </body>
 </html>

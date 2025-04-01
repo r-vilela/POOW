@@ -1,55 +1,14 @@
-categories = [
-		{
-				ID: 1,
-				name: "Action"
-		},
-		{
-				ID: 2,
-				name: "Drama"
-		},
-		{
-				ID: 3,
-				name: "Romance"
-		},
-		{
-				ID: 4,
-				name: "Terror"
-		}
-]
-
-films = [
-		{
-				ID: 1,
-				name: 'Robocop',
-				category: 'Action',
-				description: 'A cop that comes back to life as a robot'
-		},
-		{
-				ID: 2,
-				name: '007',
-				category: 'Drama',
-				description: 'A spy that do spy stuff',
-		},
-		{
-				ID: 3,
-				name: 'Before I met you',
-				category: 'Romance',
-				description: 'A paralised guy that falls in love with his nurse',
-		},
-		{
-				ID: 4,
-				name: 'IT - A Coisa',
-				category: 'Terror',
-				description: 'A alien that kills children',
-		},
-]
-
 
 function createTable(prtElm, name, values) {
 		prtElm.innerHTML = ''
-		title = document.createElement('h4')
-		title.classList.add('fw-bold')
-		title.innerText = name 
+		title = document.createElement('div')
+		title.innerHTML = `
+				<h4>${name}</h4>
+				<div class="btn btn-success" data-toggle="modal" data-target="#films" role="button">Add</div>
+				`
+		title.classList.add('d-flex');
+		title.classList.add('align-items-center');
+		title.classList.add('justify-content-between');
 
 		div = document.createElement('div')
 		table = document.createElement('table')
@@ -69,18 +28,18 @@ function createTable(prtElm, name, values) {
 				th.innerHTML = key.charAt(0).toUpperCase() + key.slice(1)
 				trh.appendChild(th)
 		})
-		
+
 		tbody = document.createElement('tbody')
 
 		values.forEach((value) => {
-				
+
 				tr = document.createElement('tr')
 
 				keys.forEach((key) => {
 
-						th = document.createElement('th')
+						th = document.createElement('td')
 						th.innerHTML = value[key]
-						
+
 						tr.appendChild(th)
 				})
 
@@ -93,14 +52,6 @@ function createTable(prtElm, name, values) {
 
 		prtElm.appendChild(title)
 		prtElm.appendChild(div)
-}
-function filmsTable(prtElm) {
-		prtElm.innerHTML = ''
-		title = document.createElement('h4')
-		title.classList.add('fw-bold')
-		title.innerText = 'Films'
-
-		prtElm.appendChild(title)
 }
 
 function pagination(elm, otherElm) {
@@ -134,4 +85,5 @@ document.addEventListener("DOMContentLoaded", (event) => {
 		filmsElm.addEventListener("click", (event) => {
 				pagination(event.target, categoryElm)
 		})
+
 })
