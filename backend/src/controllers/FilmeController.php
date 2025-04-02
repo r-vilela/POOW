@@ -8,11 +8,20 @@ use \src\models\Filme;
 class FilmeController extends Controller{
     
     public function index(){
+        header('Content-Type: application/json'); 
         $filme = new Filme();
 
         $filmes = $filme->getFilmes();
 
         echo json_encode($filmes, JSON_PRETTY_PRINT);
+    }
+
+    public function detalhes($id){
+        header('Content-Type: application/json'); 
+        $filme = new Filme();
+        $filme = $filme->getFilme($id);
+        
+        echo json_encode($filme, JSON_PRETTY_PRINT);
     }
 
     public function cadastrar(){
@@ -59,11 +68,23 @@ class FilmeController extends Controller{
     }
 
     public function deletar($id){
+        
         $filme = new Filme();
         $filme->deletar($id);
 
         echo json_encode(['success' => true, 'message' => 'Filme deletado com sucesso!']);
     }
+
+    public function buscar(){
+        header('Content-Type: application/json'); // Define JSON na resposta
+        $query = $_GET['query'] ?? '';
+        
+        $filme = new Filme();
+        $filmes = $filme->buscarFilmes($query);
+    
+        echo json_encode($filmes, JSON_PRETTY_PRINT);
+    }
+    
 
 }
 

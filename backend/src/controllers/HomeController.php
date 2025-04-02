@@ -2,6 +2,7 @@
 namespace src\controllers;
 
 use \core\Controller;
+use \src\models\Filme;
 
 class HomeController extends Controller {
 

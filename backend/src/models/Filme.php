@@ -33,6 +33,15 @@ class Filme extends Model{
         return self::delete()->where('id', $id)->execute();
     }
 
+    public static function buscarFilmes($query){
+        // Mudei para usar get() em vez de execute() para receber os resultados
+        // e também adicionei busca na sinopse
+        return self::select()
+            ->where('titulo', 'like', "%$query%")
+            ->get();
+    }
+    
+
 }
 
 
