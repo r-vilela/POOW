@@ -1,10 +1,20 @@
 
-function listFilms(prtElm, values) {
+async function listFilms(search = null) {
+    prtElm = document.getElementById('carousel')
+
     prtElm.innerHTML = ''
     divContainer = document.createElement('div')
     divContainer.classList.add("carousel-inner")
     divContainer.classList.add("overflow-visible")
     divContainer.setAttribute("role", "listbox")
+
+    let values = 0
+    
+    if(!search){
+		values = await getFilms(search)
+	} else {
+		values = await getFilms()
+	}
     
     values.forEach((value) => {
         div = document.createElement('div')

@@ -1,28 +1,41 @@
-async function getFilms() {
-    try {
-		const response = await fetch("http://localhost/backend/public/filmes", {
+async function getFilms(search=null) {
+    if(!search) {
+		try {
+		    const response = await fetch("http://localhost/backend/public/filmes", {
 				method:"GET"
-		})
-		if(!response.ok) {
-		    throw new Error(`Responde status: ${response.status}`)
+		    })
+		    if(!response.ok) {
+				throw new Error(`Responde status: ${response.status}`)
+		    }
+
+		    const json = await response.json()
+		    return json
+		} catch (e) {
+		    console.log(e.message)
 		}
 
-		const json = await response.json()
-		return json
-    } catch (e) {
-		console.log(e.message)
-    }
+	} else {
+		try {
+		    const response = await fetch("http://localhost/backend/public/filmes", {
+				method:"GET"
+		    })
+		    if(!response.ok) {
+				throw new Error(`Responde status: ${response.status}`)
+		    }
+
+		    const json = await response.json()
+		    return json
+		} catch (e) {
+		    console.log(e.message)
+		}
+
+	}
 }
 
 document.addEventListener("DOMContentLoaded", async (event) => {
-    carouselElm = document.getElementById("carousel");
-    
-    filmsList = await getFilms();
-    console.log(filmsList)
-    
-    listFilms(carouselElm, filmsList)
+    await listFilms()
 
-    let items =document.querySelectorAll('.carousel .carousel-item')
+    let items = document.querySelectorAll('.carousel .carousel-item')
 
     items.forEach((el) => {
         const minPerSlide = 6
