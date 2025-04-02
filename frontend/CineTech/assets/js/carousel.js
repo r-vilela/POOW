@@ -11,10 +11,11 @@ async function listFilms(search = null) {
     let values = 0
     
     if(!search){
-		values = await getFilms(search)
-	} else {
 		values = await getFilms()
+	} else {
+		values = await getFilms(search)
 	}
+    console.log(values)
     
     values.forEach((value) => {
         div = document.createElement('div')
