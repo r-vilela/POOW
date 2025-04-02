@@ -20,7 +20,7 @@ function createTable(prtElm, name, values) {
 		keys.forEach((key) => {
 				th = document.createElement('th')
 
-				th.innerHTML = key.charAt(0).toUpperCase() + key.slice(1)
+				th.innerHTML = key.charAt(0).toUpperCase() + key.slice(1).replace( '_', ' ')
 				trh.appendChild(th)
 		})
 
@@ -49,7 +49,7 @@ function createTable(prtElm, name, values) {
 		prtElm.appendChild(div)
 }
 
-function pagination(elm, otherElm) {
+function pagination(elm, otherElm, values) {
 		if(elm.className.includes('inativo')){
 				otherElm.classList.remove('ativo')
 				otherElm.classList.add('inativo')
@@ -57,11 +57,8 @@ function pagination(elm, otherElm) {
 				elm.classList.remove('inativo')
 
 				tableElm = document.getElementById('table-container');
-				if (elm.innerText == 'Categories'){
-						createTable(tableElm, elm.innerText, categories)
-				} else {
-						createTable(tableElm, elm.innerText, films)
-				}
+				createTable(tableElm, elm.innerText, values)
+				
 
 		}
 }
