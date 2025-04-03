@@ -16,7 +16,8 @@ async function getFilms(search=null) {
 
 	} else {
 		try {
-		    const response = await fetch("http://localhost/backend/public/filmes", {
+		    const url = "http://localhost/backend/public/filmes/buscar?query="
+		    const response = await fetch(url + search, {
 				method:"GET"
 		    })
 		    if(!response.ok) {
@@ -32,9 +33,7 @@ async function getFilms(search=null) {
 	}
 }
 
-document.addEventListener("DOMContentLoaded", async (event) => {
-    await listFilms()
-
+function carousel(){
     let items = document.querySelectorAll('.carousel .carousel-item')
 
     items.forEach((el) => {
@@ -50,4 +49,10 @@ document.addEventListener("DOMContentLoaded", async (event) => {
         }
     })
     
+}
+
+document.addEventListener("DOMContentLoaded", async (event) => {
+    await listFilms()
+
+    carousel()
 })

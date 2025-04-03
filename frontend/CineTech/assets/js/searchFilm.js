@@ -1,7 +1,19 @@
 srcForm = document.getElementById('searchForm')
-srcButton = document.getElementById('searchButton')
 
-srcForm.addEventListener('submit', (event) => {
+srcForm.addEventListener('submit', async (event) => {
     event.preventDefault()
-    console.log(searchButton, searchForm)
+
+    let param = document.getElementById('searchParam')
+    let option = document.getElementById('searchOption')
+
+    if (param.value != ''){
+		if ( option.value === 'titulo'){
+		    await listFilms(param.value)
+		} else if ( option.value === 'genero'){
+		    console.log('quer genero')
+		}
+	}
+    carousel()
+
+
 })
