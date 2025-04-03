@@ -59,7 +59,8 @@ class FilmeController extends Controller{
             'capa' => $_PUT['capa'] ?? null,
             'trailer_url' => $_PUT['trailer_url'] ?? null,
             'data_lancamento' => $_PUT['data_lancamento'] ?? null,
-            'duracao' => $_PUT['duracao'] ?? null
+            'duracao' => $_PUT['duracao'] ?? null,
+            'genero_id' => $_PUT['genero_id']
         ];
 
         $filme = new Filme();
