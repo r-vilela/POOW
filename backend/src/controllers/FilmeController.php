@@ -13,7 +13,7 @@ class FilmeController extends Controller{
 
         $filmes = $filme->getFilmes();
 
-        echo json_encode($filmes, JSON_PRETTY_PRINT);
+        echo json_encode($filmes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     public function detalhes($id){
@@ -21,7 +21,7 @@ class FilmeController extends Controller{
         $filme = new Filme();
         $filme = $filme->getFilme($id);
         
-        echo json_encode($filme, JSON_PRETTY_PRINT);
+        echo json_encode($filme, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     public function cadastrar(){
@@ -85,7 +85,7 @@ class FilmeController extends Controller{
         $filme = new Filme();
         $filmes = $filme->buscarFilmes($query);
     
-        echo json_encode($filmes, JSON_PRETTY_PRINT);
+        echo json_encode($filmes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
     
 

@@ -12,7 +12,7 @@ class GeneroController extends Controller{
 
         $generos = $genero->getGeneros();
 
-        echo json_encode($generos, JSON_PRETTY_PRINT);
+        echo json_encode($generos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
     }
 
     public function cadastrar(){
@@ -51,6 +51,23 @@ class GeneroController extends Controller{
         echo json_encode(['success' => true, 'message' => 'Genero deletado com sucesso!']);
     }
 
+    public function buscarGenero($id){
+        header('Content-Type: application/json');
+
+        $genero = new Genero();
+        $genero_id = $genero->getGenero($id);
+        if(!$genero_id){
+            echo json_encode(['message' => 'Gênero não existente'], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+            return;
+        }
+        $filmes = $genero->buscarFilmesPorGenero($id);
+        
+        if(empty($filmes)){
+            echo json_encode(['message' => 'Nenhum filme encontrado'], JSON_PRETTY_PRINT);
+        }else{
+            echo json_encode($filmes, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        }
+    }
 }
 
 ?>

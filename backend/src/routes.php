@@ -15,6 +15,8 @@ $router->post('/filmes', 'FilmeController@cadastrar');
 $router->put('/filmes/{id}','FilmeController@atualizar');
 $router->delete('/filmes/{id}', 'FilmeController@deletar');
 
+$router->get('/filmes/genero/{id}', 'GeneroController@buscarGenero');
+
 $router->get('/generos', 'GeneroController@index');
 $router->post('/generos', 'GeneroController@cadastrar');
 $router->put('/generos/{id}', 'GeneroController@atualizar');
