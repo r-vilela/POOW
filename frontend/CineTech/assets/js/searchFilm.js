@@ -1,6 +1,6 @@
 srcForm = document.getElementById('searchForm')
 
-srcForm.addEventListener('submit', (event) => {
+srcForm.addEventListener('submit', async (event) => {
     event.preventDefault()
 
     let param = document.getElementById('searchParam')
@@ -8,7 +8,7 @@ srcForm.addEventListener('submit', (event) => {
 
     if (param.value != ''){
 		if ( option.value === 'titulo'){
-		    listFilms(param.value)
+		    await listFilms(param.value)
 		} else if ( option.value === 'genero'){
 		    console.log('quer genero')
 		}
