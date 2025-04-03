@@ -15,13 +15,13 @@ async function listFilms(search = null) {
 	} else {
 		values = await getFilms(search)
 	}
-    console.log(values)
     
     values.forEach((value) => {
         div = document.createElement('div')
+		elm = JSON.stringify(value)
         div.innerHTML = `
             <div class="col-md-2 p-1 hover-item">
-                <div class="w-100 h-100">
+                <div onclick="addFilmModal(elm)" class="w-100 h-100">
                     <img src="file:///opt/lampp/htdocs/backend/src/${value.capa}" class="d-block w-100 h-100 object-fill-cover">
                 </div>
             </div>
@@ -34,7 +34,7 @@ async function listFilms(search = null) {
         }
 
         divContainer.appendChild(div)
-        })
+    })
         
     prtElm.appendChild(divContainer)
 }

@@ -12,6 +12,10 @@ srcForm.addEventListener('submit', async (event) => {
 		} else if ( option.value === 'genero'){
 		    console.log('quer genero')
 		}
+	} else {
+
+    await listFilms()
+
 	}
     carousel()
 
