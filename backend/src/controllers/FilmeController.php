@@ -31,6 +31,7 @@ class FilmeController extends Controller{
         $duracao = $_POST['duracao'];
         $trailer_url = $_POST['trailer_url'];
         $data_lancamento = $_POST['data_lancamento'];
+        $genero_id = $_POST['genero_id'];
 
         $data_filme = [
             'titulo' => $titulo,
@@ -38,7 +39,8 @@ class FilmeController extends Controller{
             'capa' => $capa,
             'trailer_url' => $trailer_url,
             'data_lancamento' => $data_lancamento,
-            'duracao' => $duracao
+            'duracao' => $duracao,
+            'genero_id' => $genero_id
         ];
 
         $filme = new Filme();
