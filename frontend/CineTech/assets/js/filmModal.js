@@ -8,17 +8,19 @@ async function addFilmModal(id){
     elm.innerHTML = `
 		<div id='filmModal' class='p-auto position-fixed d-flex align-items-center justify-content-center h-100 w-100 text-light ' style="background-color: rgba(33,37,41,0.8); z-index: 4; top: 0; left: 0" >
 		   <div class='bg-dark card text-light rounded p-4' style='margin: 1.75rem; margin-left: auto; margin-right: auto;'>
-				<div class='pb-4 d-flex justify-content-between align-items-center w-100' style='max-width: 18rem'>
-				<span>Detalhes do filme </span>
+				<div class='pb-4 d-flex justify-content-between align-items-center w-100'>
+				<span class="h4">Detalhes do Filme </span>
 				<button type='button' onclick='removeFilmModal()' class="btn bg-dark text-light">Fechar</button>
 				</div>	
 				<div class='d-grid' style='grid-template-columns: 1fr 2fr'>
 				<img src="file:///opt/lampp/htdocs/backend/src/${value[0].capa}" class="d-block w-100 h-100 object-fill-cover">
-				${value[0].titulo}</br>
-				${value[0].sinopse}</br>
-				${value[0].duracao}</br>
-				${value[0].data_lancamento}</br>
-				${value[0].trailer_url}</br>
+				<div class="p-2 h6 d-flex" style="flex-direction: column;row-gap: 1rem">
+				<span><strong>Titulo: </strong>${value[0].titulo}</br></span>
+				<span><strong>Sinopse: </strong>${value[0].sinopse}</br></span>
+				<span><strong>Duracao do Filme: </strong>${value[0].duracao} minutos</br></span>
+				<span><strong>Data de Lacamento: </strong>${value[0].data_lancamento}</br></span>
+				<span><strong>Trailer do Filme: </strong><a href="${value[0].trailer_url}">${value[0].trailer_url}</a></br></span>
+				</div>
 				</div>
 		   </div>
 		</div>
