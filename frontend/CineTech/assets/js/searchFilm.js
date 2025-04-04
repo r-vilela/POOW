@@ -1,5 +1,6 @@
 srcForm = document.getElementById('searchForm')
 
+
 srcForm.addEventListener('submit', async (event) => {
     event.preventDefault()
 

@@ -1,6 +1,7 @@
+const url = "http://localhost/backend/public"
 async function getCat() {
     try {
-		const response = await fetch("http://localhost/backend/public/generos", {
+		const response = await fetch(url + "/generos", {
 				method:"GET"
 		})
 		if(!response.ok) {
@@ -17,7 +18,7 @@ async function getCat() {
 async function getFilms(search=null) {
     if(!search) {
 		try {
-		   const response = await fetch("http://localhost/backend/public/filmes", {
+		   const response = await fetch(url + "/filmes", {
 				method:"GET"
 		   })
 		   if(!response.ok) {
@@ -32,8 +33,7 @@ async function getFilms(search=null) {
 
 	} else {
 		try {
-		   const url = "http://localhost/backend/public/filmes/buscar?query="
-		   const response = await fetch(url + search, {
+		   const response = await fetch(url + "/filmes/buscar?query=" + search, {
 				method:"GET"
 		   })
 		   if(!response.ok) {
@@ -46,5 +46,21 @@ async function getFilms(search=null) {
 		   console.log(e.message)
 		}
 
+	}
+}
+
+async function getFilmeId(id){
+    try{
+		const response = await fetch(url + "/filmes/" + id,{
+				method: "GET"
+		})
+		if(!response.ok){
+		    throw new Error(`Response status: ${response.status}`)
+		}
+
+		const json = await response.json()
+		return json
+ 	} catch (e) {
+			console.log(e.message)
 	}
 }
