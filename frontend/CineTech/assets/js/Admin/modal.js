@@ -59,15 +59,12 @@ function addModal(name){
 						</form>
 						</div>
 
-						<div class="modal-footer bg-dark">
-						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-						</div>
 
 						</div>
 						</div>
 						</div>
 						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-						Open modal
+						Adicionar Filme
 						</button>`
 		}else if (name === 'Categories') {
 				div.innerHTML = `
@@ -99,15 +96,12 @@ function addModal(name){
 						</form>
 						</div>
 
-						<div class="modal-footer bg-dark">
-						<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-						</div>
 
 						</div>
 						</div>
 						</div>
 						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-						Open modal
+						Adicionar Categoria
 						</button>`
 		}
 
