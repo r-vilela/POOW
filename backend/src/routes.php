@@ -12,7 +12,8 @@ $router->get('/filmes/buscar', 'FilmeController@buscar');
 $router->get('/filmes', 'FilmeController@index');
 $router->get('/filmes/{id}', 'FilmeController@detalhes');
 $router->post('/filmes', 'FilmeController@cadastrar');
-$router->put('/filmes/{id}','FilmeController@atualizar');
+// $router->put('/filmes/{id}','FilmeController@atualizar');
+$router->post('/filmes/{id}', 'FilmeController@atualizar');
 $router->delete('/filmes/{id}', 'FilmeController@deletar');
 
 $router->get('/filmes/genero/{id}', 'GeneroController@buscarGenero');
