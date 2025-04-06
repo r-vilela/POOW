@@ -15,6 +15,11 @@ function createTable(prtElm, name, values) {
 		thead = document.createElement('thead')
 		trh = document.createElement('tr')
 
+		th = document.createElement('th')
+
+		th.innerHTML = ' '
+		trh.appendChild(th)
+
 		keys = Object.keys(values[0])
 
 		keys.forEach((key) => {
@@ -30,6 +35,13 @@ function createTable(prtElm, name, values) {
 
 				tr = document.createElement('tr')
 
+				th = document.createElement('td')
+				id = value['id']
+				th.innerHTML = `
+						<div onclick="addInfoModal(${id})" class="btn btn-info btn-sm rounded-circle"><i class="bi bi-info text-light "></i></div>
+				`
+				tr.appendChild(th)
+
 				keys.forEach((key) => {
 
 						th = document.createElement('td')
@@ -37,6 +49,7 @@ function createTable(prtElm, name, values) {
 
 						tr.appendChild(th)
 				})
+
 
 				tbody.appendChild(tr)
 		})
