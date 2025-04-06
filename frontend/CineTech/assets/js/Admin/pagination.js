@@ -30,6 +30,7 @@ function createTable(prtElm, name, values) {
 		})
 
 		tbody = document.createElement('tbody')
+		v = name === "Films" ? 1 : 0
 
 		values.forEach((value) => {
 
@@ -38,7 +39,7 @@ function createTable(prtElm, name, values) {
 				th = document.createElement('td')
 				id = value['id']
 				th.innerHTML = `
-						<div onclick="addInfoModal(${id})" class="btn btn-info btn-sm rounded-circle"><i class="bi bi-info text-light "></i></div>
+						<div onclick="addInfoModal(${id}, ${v})" class="btn btn-info btn-sm rounded-circle"><i class="bi bi-pencil text-light "></i></div>
 				`
 				tr.appendChild(th)
 

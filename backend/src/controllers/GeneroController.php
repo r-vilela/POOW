@@ -15,6 +15,14 @@ class GeneroController extends Controller{
         echo json_encode($generos, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE );
     }
 
+    public function detalhes($id){
+        header('Content-Type: application/json'); 
+        $genero = new Genero();
+        $genero = $genero->getGenero($id);
+        
+        echo json_encode($genero, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
     public function cadastrar(){
         $nome = $_POST['nome'];
         $descricao = $_POST['descricao'] ?? null;

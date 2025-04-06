@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 		filmsElm.addEventListener("click", async (event) => {
 				pagination(event.target, categoryElm, await getFilms())
 				const form = document.querySelector("#filmForm")
-				console.log(form)
 		})
 
 })

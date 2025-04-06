@@ -100,18 +100,3 @@ async function getCatId(id){
 	}
 }
 
-async function delCat(id){
-    try{
-		const response = await fetch(url + "/generos/" + id,{
-				method: "DELETE"
-		})
-		if(!response.ok){
-		    throw new Error(`Response status: ${response.status}`)
-		}
-
-		const json = await response.json()
-		return json
- 	} catch (e) {
-			console.log(e.message)
-	}
-}

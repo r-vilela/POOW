@@ -98,13 +98,14 @@ function addModal(name){
 
 }
 
-async function addInfoModal(id){
+async function addInfoModal(id,nm){
 		prtElm = document.getElementById("table-container");
 		elm = document.createElement('div')
 
 		value = await getCatId(id)
-		console.log(value)
+		console.log(value[0]['descricao'])
 
+		if(!nm) {
 		elm.innerHTML = `
 				<div id='filmModal' class='p-auto position-fixed d-flex align-items-center justify-content-center h-100 w-100 text-light ' style="background-color: rgba(33,37,41,0.8); z-index: 4; top: 0; left: 0" >
 				<div class='bg-dark card text-light rounded p-4' style='margin: 1.75rem; margin-left: auto; margin-right: auto;'>
@@ -113,7 +114,7 @@ async function addInfoModal(id){
 				<button type='button' onclick='removeFilmModal()' class="btn bg-danger text-light">Fechar</button>
 				</div>	
 				<div class="p-2 h6 d-flex">
-				<form id="catForm" >
+				<form id="updCatForm" >
 
 				<label for="nome">Nome</label>
 				<input type="text" class="form-control bg-dark text-light" name="nome" id="nome" value=${value[0]['nome']} required>
@@ -122,7 +123,7 @@ async function addInfoModal(id){
 				<input type="text" class="form-control bg-dark text-light" id="descricao" name="descricao" value=${value[0]['descricao']}>
 
 				<div class="d-flex justify-content-between align-items-center" >
-				<button type="submit" class="btn btn-success btn-sm mt-2">Atualizar</button>
+				<button type="submit" onclick="updCat(${value[0]['id']})" class="btn btn-success btn-sm mt-2">Atualizar</button>
 				<button type="button" onclick="delCat(${value[0]['id']})" class="btn btn-danger btn-sm mt-2">Apagar</button>
 				</div>
 
@@ -131,5 +132,8 @@ async function addInfoModal(id){
 				</div>
 				</div>
 				`
+		}
+
 		prtElm.appendChild(elm)
+		updCat(id)
 }
