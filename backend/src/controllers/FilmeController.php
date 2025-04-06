@@ -21,10 +21,12 @@ class FilmeController extends Controller{
         $filme = new Filme();
         $filme = $filme->getFilme($id);
         
-        echo json_encode($filme, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        echo json_encode($filme[0], JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     public function cadastrar() {
+        umask(0022);
+
         $titulo = $_POST['titulo'];
         $sinopse = $_POST['sinopse'];
         $duracao = $_POST['duracao'];
@@ -69,7 +71,8 @@ class FilmeController extends Controller{
     
     
     public function atualizar($id) {
-        // Recebe os dados via POST mesmo para editar (com enctype multipart/form-data)
+        header('Content-Type: application/json; charset=utf-8');
+    
         $titulo = $_POST['titulo'] ?? null;
         $sinopse = $_POST['sinopse'] ?? null;
         $trailer_url = $_POST['trailer_url'] ?? null;
@@ -77,39 +80,67 @@ class FilmeController extends Controller{
         $duracao = $_POST['duracao'] ?? null;
         $genero_id = $_POST['genero_id'] ?? null;
     
+        $filme = new Filme();
+        $filmeExistente = $filme->getFilme($id);
+        $filmeExistente = $filmeExistente[0] ?? null;
+    
+        if (!$filmeExistente) {
+            echo json_encode(['success' => false, 'message' => 'Filme não encontrado.']);
+            return;
+        }
+    
         $data_filme = [
             'titulo' => $titulo,
             'sinopse' => $sinopse,
             'trailer_url' => $trailer_url,
             'data_lancamento' => $data_lancamento,
             'duracao' => $duracao,
-            'genero_id' => $genero_id
+            'genero_id' => $genero_id,
+            'capa' => $filmeExistente['capa'] ?? null
         ];
     
-        // Verifica se foi enviada uma nova imagem
         if (isset($_FILES['capa']) && $_FILES['capa']['error'] == 0) {
             $extensao = pathinfo($_FILES['capa']['name'], PATHINFO_EXTENSION);
             $nomeArquivo = 'capa_' . uniqid() . '.' . $extensao;
     
             $caminhoUpload = __DIR__ . '/../capas/' . $nomeArquivo;
-    
             if (!move_uploaded_file($_FILES['capa']['tmp_name'], $caminhoUpload)) {
                 echo json_encode(['success' => false, 'message' => 'Erro ao fazer upload da imagem.']);
                 return;
             }
     
-            $data_filme['capa'] = $nomeArquivo;
+            // Apaga capa antiga
+            if (isset($filmeExistente['capa'])) {
+                $caminhoAntigo = __DIR__ . '/../' . $filmeExistente['capa'];
+                if (file_exists($caminhoAntigo)) {
+                    unlink($caminhoAntigo);
+                }
+            }
+    
+            $data_filme['capa'] = 'capas/' . $nomeArquivo;
         }
     
-        $filme = new Filme();
         $filme->atualizar($id, $data_filme);
     
         echo json_encode(['success' => true, 'message' => 'Filme atualizado com sucesso!']);
     }
+    
+    
 
     public function deletar($id){
         
         $filme = new Filme();
+
+        $dataFilme = $filme->getFilme($id);
+
+        if($dataFilme && isset($dataFilme['capa'])){
+            $path = __DIR__ . '/../' . $dataFilme['capa'];
+
+            if(file_exists($path)){
+                unlink($path);
+            }
+        }
+
         $filme->deletar($id);
 
         echo json_encode(['success' => true, 'message' => 'Filme deletado com sucesso!']);
