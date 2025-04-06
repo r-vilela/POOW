@@ -19,6 +19,7 @@ $router->delete('/filmes/{id}', 'FilmeController@deletar');
 $router->get('/filmes/genero/{id}', 'GeneroController@buscarGenero');
 
 $router->get('/generos', 'GeneroController@index');
+$router->get('/generos/{id}', 'GeneroController@detalhes');
 $router->post('/generos', 'GeneroController@cadastrar');
 $router->put('/generos/{id}', 'GeneroController@atualizar');
 $router->delete('/generos/{id}','GeneroController@deletar');

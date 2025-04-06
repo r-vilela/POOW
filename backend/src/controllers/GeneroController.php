@@ -8,6 +8,7 @@ use \src\models\Genero;
 class GeneroController extends Controller{
     
     public function index(){
+        header('Content-Type: application/json');
         $genero = new Genero();
 
         $generos = $genero->getGeneros();
@@ -49,6 +50,13 @@ class GeneroController extends Controller{
         $genero = new Genero();
         $genero->deletar($id);
         echo json_encode(['success' => true, 'message' => 'Genero deletado com sucesso!']);
+    }
+
+    public function detalhes($id){
+        header('Content-Type: application/json');
+        $genero = new Genero();
+        $genero = $genero->getGenero($id);
+        echo json_encode($genero, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 
     public function buscarGenero($id){
