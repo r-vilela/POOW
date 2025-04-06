@@ -8,7 +8,7 @@ use \src\models\Filme;
 class FilmeController extends Controller{
     
     public function index(){
-        header('Content-Type: application/json'); 
+        header('Content-Type: application/json; charset=utf-8');
         $filme = new Filme();
 
         $filmes = $filme->getFilmes();
@@ -37,7 +37,9 @@ class FilmeController extends Controller{
         if (isset($_FILES['capa']) && $_FILES['capa']['error'] == 0) {
             $extensao = pathinfo($_FILES['capa']['name'], PATHINFO_EXTENSION);
             $nomeArquivo = 'capa_' . uniqid() . '.' . $extensao;
-    
+            if (!is_dir(__DIR__ . '/../capas')) {
+                mkdir(__DIR__ . '/../capas', 0755, true);
+            }
             $caminhoUpload = __DIR__ . '/../capas/' . $nomeArquivo;
     
             if (!move_uploaded_file($_FILES['capa']['tmp_name'], $caminhoUpload)) {
