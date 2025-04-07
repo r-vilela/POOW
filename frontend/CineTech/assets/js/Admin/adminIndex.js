@@ -105,11 +105,19 @@ document
 
     const form = e.target;
     const data = new FormData(form);
+    const dataURL = new URLSearchParams(data).toString()
 
+    const editandoId = form.dataset.editandoId;
+    const url = editandoId
+      ? `http://localhost/poow/backend/public/generos/${editandoId}`
+      : "http://localhost/poow/backend/public/generos";
+
+    const method = editandoId ? "PUT" : "POST";
+    console.log(url, method)
     try {
-      const rsp = await fetch("http://localhost/backend/public/generos", {
-        method: "POST",
-        body: data,
+      const rsp = await fetch(url, {
+        method,
+        body: dataURL,
       });
 
       if (!rsp.ok) {
@@ -213,6 +221,33 @@ function editarFilme(id) {
     .catch((err) => {
       console.error("Erro ao carregar filme para edição:", err);
       alert("Erro ao carregar dados do filme.");
+    });
+}
+
+
+function editarGenero(id) {
+  fetch(`http://localhost/poow/backend/public/generos/${id}`)
+    .then((res) => res.json())
+    .then((genero) => {
+      console.log("Resposta da API:", genero);
+
+      const form = document.getElementById("formCadastroCat");
+
+      const dados = genero[0];
+      form.nome.value = dados.nome || "";
+      form.descricao.value = dados.descricao || "";
+      
+      // <- CORREÇÃO AQUI:
+      form.dataset.editandoId = dados.id;
+
+      const modal = new bootstrap.Modal(
+        document.getElementById("modalCadastroCat")
+      );
+      modal.show();
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar genero para edição:", err);
+      alert("Erro ao carregar dados do genero.");
     });
 }
 
