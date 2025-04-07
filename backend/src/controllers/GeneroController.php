@@ -28,7 +28,7 @@ class GeneroController extends Controller{
         $genero = new Genero();
         $genero->salvar($data_genero);
 
-        echo json_encode(['success' => true, 'message' => 'Genero cadastrado com sucesso!']);
+        echo json_encode(['success' => true, 'message' => 'Categoria cadastrada com sucesso!']);
 
     }
     
@@ -43,13 +43,13 @@ class GeneroController extends Controller{
         $filme = new Genero();
         $filme->atualizar($id, $data_genero);
 
-        echo json_encode(['success' => true, 'message' => 'Genero atualizado com sucesso!']);
+        echo json_encode(['success' => true, 'message' => 'Categoria atualizada com sucesso!']);
     }
 
     public function deletar($id){
         $genero = new Genero();
         $genero->deletar($id);
-        echo json_encode(['success' => true, 'message' => 'Genero deletado com sucesso!']);
+        echo json_encode(['success' => true, 'message' => 'Categoria deletada com sucesso!']);
     }
 
     public function detalhes($id){

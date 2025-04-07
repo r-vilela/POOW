@@ -4,8 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>CineTech</title>
-
-    <!-- Fonts e Bootstrap -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,7 +22,6 @@
   </head>
 
   <body class="bg-dark text-light">
-    <!-- Header -->
     <header
       class="custom-fixed w-100 position-fixed bg-dark border-bottom border-secondary"
     >
@@ -38,15 +35,15 @@
       </div>
     </header>
 
-    <!-- Navegação -->
     <nav class="nav container pt-5 mt-4">
       <span id="films" role="button" class="ativo">Films</span>
       <span id="categories" role="button" class="inativo">Categories</span>
     </nav>
-
-    <!-- Conteúdo principal -->
     <main class="container py-4">
-      <div class="d-flex justify-content-between align-items-center mb-3">
+      <div
+        id="film-header"
+        class="d-flex justify-content-between align-items-center mb-3"
+      >
         <h4>Filmes cadastrados</h4>
         <button
           class="btn btn-success"
@@ -56,8 +53,19 @@
           <i class="bi bi-plus-circle me-1"></i> Adicionar Filme
         </button>
       </div>
-
-      <!-- Tabela -->
+      <div
+        id="cat-header"
+        class="d-flex justify-content-between align-items-center mb-3 d-none"
+      >
+        <h4>Categorias cadastradas</h4>
+        <button
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#modalCadastroCat"
+        >
+          <i class="bi bi-plus-circle me-1"></i> Adicionar Categoria
+        </button>
+      </div>
       <div class="table-responsive">
         <table class="table table-dark table-striped align-middle text-light">
           <thead>
@@ -72,10 +80,19 @@
           <tbody id="tabela-filmes"></tbody>
         </table>
       </div>
+      <div class="table-responsive-cat d-none">
+        <table class="table table-dark table-striped align-middle text-light">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Descrição</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tabela-generos"></tbody>
+        </table>
+      </div>
     </main>
-
-    <!-- Modal de Adição de Filme -->
-    <!-- Modal de Cadastro -->
     <div
       class="modal fade"
       id="modalCadastroFilme"
@@ -175,6 +192,62 @@
                     style="max-height: 200px; display: none"
                   />
                 </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="modalCadastroCat"
+      tabindex="-1"
+      aria-labelledby="modalCadastroCatLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content bg-dark text-light">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalCadastroCatLabel">
+              Cadastrar Categoria
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Fechar"
+            ></button>
+          </div>
+          <form id="formCadastroCat">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nome"
+                  name="nome"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea
+                  class="form-control"
+                  id="descricao"
+                  name="descricao"
+                ></textarea>
               </div>
             </div>
             <div class="modal-footer">

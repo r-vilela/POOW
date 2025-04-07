@@ -1,5 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const filmsTab = document.getElementById("films");
+  const categoriesTab = document.getElementById("categories");
+  const filmesContainer = document.querySelector(".table-responsive");
+  const categoriasContainer = document.querySelector(".table-responsive-cat");
+  const filmesHeader = document.getElementById("film-header");
+  const categoriesHeader = document.getElementById("cat-header");
+
   carregarFilmes();
+  carregarCategorias();
+
+  filmsTab.addEventListener("click", () => {
+    filmsTab.classList.replace("inativo", "ativo");
+    categoriesTab.classList.replace("ativo", "inativo");
+    filmesContainer.classList.remove("d-none");
+    categoriasContainer.classList.add("d-none");
+    filmesHeader.classList.remove("d-none");
+    categoriesHeader.classList.add("d-none");
+  });
+
+  categoriesTab.addEventListener("click", () => {
+    categoriesTab.classList.replace("inativo", "ativo");
+    filmsTab.classList.replace("ativo", "inativo");
+    filmesContainer.classList.add("d-none");
+    categoriasContainer.classList.remove("d-none");
+    filmesHeader.classList.add("d-none");
+    categoriesHeader.classList.remove("d-none");
+  });
 });
 
 function carregarFilmes() {
@@ -40,6 +66,75 @@ function carregarFilmes() {
     });
 }
 
+function carregarCategorias() {
+  fetch("http://localhost/poow/backend/public/generos")
+    .then((response) => response.json())
+    .then((data) => {
+      const tbody = document.getElementById("tabela-generos");
+      tbody.innerHTML = "";
+
+      if (data.length === 0) {
+        tbody.innerHTML =
+          '<tr><td colspan="5" class="text-center">Nenhum filme cadastrado.</td></tr>';
+        return;
+      }
+
+      data.forEach((genero) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${genero.nome}</td>
+          <td>${genero.descricao}</td>
+          <td>
+            <button class="btn btn-sm btn-outline-warning me-2" onclick="editarGenero(${genero.id})">Editar</button>
+            <button class="btn btn-sm btn-outline-danger" onclick="delCat(${genero.id})">Excluir</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    })
+    .catch((error) => {
+      console.error("Erro ao carregar filmes:", error);
+      alert("Erro ao carregar filmes.");
+    });
+}
+
+document
+  .getElementById("formCadastroCat")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const rsp = await fetch("http://localhost/backend/public/generos", {
+        method: "POST",
+        body: data,
+      });
+
+      if (!rsp.ok) {
+        const errorText = await rsp.text();
+        throw new Error(errorText);
+      }
+
+      const result = await rsp.json();
+      console.log("Success", result);
+
+      const modal = bootstrap.Modal.getInstance(
+        document.getElementById("modalCadastroCat")
+      );
+      modal.hide();
+
+      form.reset();
+      carregarCategorias();
+
+      alert("Categoria cadastrada com sucesso!");
+    } catch (error) {
+      console.error("Erro ao cadastrar categoria:", error);
+      alert("Erro ao cadastrar categoria.");
+    }
+  });
+
 document
   .getElementById("formCadastro")
   .addEventListener("submit", async (e) => {
@@ -48,13 +143,12 @@ document
     const form = e.target;
     const formData = new FormData(form);
 
-    // Verifica se é edição ou cadastro
     const editandoId = form.dataset.editandoId;
     const url = editandoId
       ? `http://localhost/poow/backend/public/filmes/${editandoId}`
       : "http://localhost/poow/backend/public/filmes";
 
-    const method = editandoId ? "POST" : "POST"; // Se for PUT, altere no backend
+    const method = editandoId ? "POST" : "POST";
     try {
       const response = await fetch(url, {
         method,
@@ -169,3 +263,24 @@ document.getElementById("capa").addEventListener("change", function () {
     imgPreview.style.display = "none";
   }
 });
+
+function delCat(id) {
+  if (!confirm("Tem certeza que deseja excluir essa categoria?")) return;
+
+  fetch(`http://localhost/poow/backend/public/generos/${id}`, {
+    method: "DELETE",
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.success) {
+        alert(data.message);
+        carregarCategorias();
+      } else {
+        alert("Erro: " + data.message);
+      }
+    })
+    .catch((err) => {
+      console.error("Erro ao categoria:", err);
+      alert("Erro ao excluir categoria.");
+    });
+}
