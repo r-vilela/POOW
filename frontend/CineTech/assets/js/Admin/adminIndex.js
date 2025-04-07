@@ -135,8 +135,6 @@ document
 
       form.reset();
       carregarCategorias();
-
-      alert("Categoria cadastrada com sucesso!");
     } catch (error) {
       console.error("Erro ao cadastrar categoria:", error);
       alert("Erro ao cadastrar categoria.");
