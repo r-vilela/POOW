@@ -13,7 +13,7 @@ async function addFilmModal(id){
 				<button type='button' onclick='removeFilmModal()' class="btn bg-danger text-light">Fechar</button>
 				</div>	
 				<div class='d-grid' style='grid-template-columns: 1fr 2fr'>
-				<img src="file:///opt/lampp/htdocs/backend/src/${value[0].capa}" class="d-block w-100 h-100 object-fill-cover">
+				<img src="file:///opt/lampp/htdocs/poow/backend/src/${value[0].capa}" class="d-block w-100 h-100 object-fill-cover">
 				<div class="p-2 h6 d-flex" style="flex-direction: column;row-gap: 1rem">
 				<span><strong>Titulo: </strong>${value[0].titulo}</br></span>
 				<span><strong>Sinopse: </strong>${value[0].sinopse}</br></span>
