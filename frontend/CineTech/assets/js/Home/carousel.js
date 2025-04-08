@@ -1,39 +1,36 @@
 
-async function listFilms(search = null) {
-    prtElm = document.getElementById('carousel')
+function listFilms(data) {
+	const prtElm = document.getElementById('carousel')
 
-    prtElm.innerHTML = ''
-    divContainer = document.createElement('div')
-    divContainer.classList.add("carousel-inner")
-    divContainer.classList.add("overflow-visible")
-    divContainer.setAttribute("role", "listbox")
+	prtElm.innerHTML = ''
+	const divContainer = document.createElement('div')
+	divContainer.classList.add("carousel-inner")
+	divContainer.classList.add("overflow-visible")
+	divContainer.setAttribute("role", "listbox")
 
-    let values = 0
-    
-    if(!search){
-		values = await getFilms()
-	} else {
-		values = await getFilms(search)
+	if (data.length === 0) {
+		prtElm.innerHTML =
+			'<div class="d-flex align-items-center justify-content-center"><h4>Nenhum filme cadastrado.</h4></div>';
+		return;
 	}
-    
-    values.forEach((value) => {
-        div = document.createElement('div')
-        div.innerHTML = `
-            <div class="col-md-2 p-1 hover-item">
-                <div onclick="addFilmModal(${value.id})" class="hover w-100 h-100">
-                    <img src="file:///opt/lampp/htdocs/poow/backend/src/${value.capa}" class="d-block w-100 h-100 object-fill-cover">
-                </div>
-            </div>
-            `
 
-        div.classList.add("carousel-item")
+	data.forEach((filme) => {
+		div = document.createElement('div')
+		div.innerHTML = `
+			<div class="col-md-2 p-1 hover-item">
+				<div onclick="addFilmModal(${filme.id})" class="hover w-100 h-100">
+					<img src="file:///opt/lampp/htdocs/poow/backend/src/${filme.capa}" class="d-block w-100 h-100 object-fill-cover">
+				</div>
+			</div>
+			`
 
-        if(divContainer.innerHTML == ''){
-            div.classList.add("active")
-        }
+		div.classList.add("carousel-item")
 
-        divContainer.appendChild(div)
-    })
-        
-    prtElm.appendChild(divContainer)
+		if(divContainer.innerHTML == ''){
+			div.classList.add("active")
+		}
+
+		divContainer.appendChild(div)
+	});
+	prtElm.appendChild(divContainer)
 }

@@ -75,7 +75,7 @@ function carregarCategorias() {
 
       if (data.length === 0) {
         tbody.innerHTML =
-          '<tr><td colspan="5" class="text-center">Nenhum filme cadastrado.</td></tr>';
+          '<tr><td colspan="5" class="text-center">Nenhuma categoria cadastrado.</td></tr>';
         return;
       }
 

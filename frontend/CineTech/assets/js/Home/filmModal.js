@@ -3,7 +3,6 @@ async function addFilmModal(id){
     elm = document.createElement('div')
 
     value = await getFilmeId(id)
-    console.log(value[0])
 
     elm.innerHTML = `
 		<div id='filmModal' class='p-auto position-fixed d-flex align-items-center justify-content-center h-100 w-100 text-light ' style="background-color: rgba(33,37,41,0.8); z-index: 4; top: 0; left: 0" >
